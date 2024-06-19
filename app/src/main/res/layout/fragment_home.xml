@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.HomeFragment">
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/imageViewRestaurant"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_image"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewRestaurant"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="Hello, Restaurant!"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size25"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_greeting"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="Your restaurant rating is:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size20" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_active_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_rating"
+        android:layout_marginTop="22dp"
+        android:text="Some of the currently active orders:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size20"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewReviews"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/txt_active_orders"
+        android:layout_marginTop="@dimen/text_size20"
+        tools:listitem="@layout/horisontal_order_item" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/recyclerViewReviews"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Active donations"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:strokeColor="@color/blue_500"
+            app:strokeWidth="5dp" />
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View all orders"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:strokeColor="@color/blue_500"
+
+            app:strokeWidth="5dp"
+
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</RelativeLayout>
+
+
