@@ -17,12 +17,30 @@ import java.util.ArrayList;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
     private Context context;
-    private ArrayList<Order> orders;
+    private ArrayList<Order> allOrders;
+    private ArrayList<Order> filteredOrders;
+    private boolean activeDonations;
 
-    public OrderAdapter(Context context, ArrayList<Order> orders) {
+    public OrderAdapter(Context context, ArrayList<Order> orders, boolean activeDonations) {
         this.context = context;
-        this.orders = orders;
+        this.allOrders = orders;
+        this.activeDonations = activeDonations;
+        filterOrders();
+
     }
+
+    private void filterOrders() {
+        filteredOrders = new ArrayList<>();
+        for (Order order : allOrders) {
+            if (activeDonations && "active".equalsIgnoreCase(order.getStatus())) {
+                filteredOrders.add(order);
+            } else if (!activeDonations && !"active".equalsIgnoreCase(order.getStatus())) {
+                filteredOrders.add(order);
+            }
+        }
+    }
+
+
 
 
     @NonNull
@@ -45,14 +63,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     }
 
     private Order getItem(int position) {
-        return orders.get(position);
+        return filteredOrders.get(position);
     }
 
     @Override
     public int getItemCount() {
-        if (orders == null)
+        if (filteredOrders == null)
             return 0;
-        return orders.size();
+        return filteredOrders.size();
     }
 
     public class OrderViewHolder extends RecyclerView.ViewHolder {

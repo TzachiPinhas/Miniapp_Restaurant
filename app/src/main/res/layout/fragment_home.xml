@@ -50,7 +50,7 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewReviews"
+        android:id="@+id/recycler_view_orders"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@id/txt_active_orders"
@@ -61,13 +61,14 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_view_orders"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/recyclerViewReviews"
         android:orientation="horizontal"
         android:padding="20dp">
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_active_donations"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -84,6 +85,7 @@
             android:layout_height="0dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_view_all_orders"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
