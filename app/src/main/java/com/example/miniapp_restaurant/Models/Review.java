@@ -1,11 +1,10 @@
 package com.example.miniapp_restaurant.Models;
 
 public class Review {
-    private String reviewId = "";
-    private String name = "";
-    private String overview = "";
-    private String date = "";
-    private float rating = 0.0f;
+    private String name;
+    private String overview;
+    private String date;
+    private float rating;
 
     public Review() {
     }
@@ -19,14 +18,6 @@ public class Review {
         return this;
     }
 
-    public String getReviewId() {
-        return reviewId;
-    }
-
-    public Review setReviewId(String reviewId) {
-        this.reviewId = reviewId;
-        return this;
-    }
 
     public String getOverview() {
         return overview;

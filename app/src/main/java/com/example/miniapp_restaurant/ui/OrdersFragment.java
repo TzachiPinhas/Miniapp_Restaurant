@@ -29,4 +29,7 @@ public class OrdersFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
+
 }

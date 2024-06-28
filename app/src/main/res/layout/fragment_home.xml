@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_image"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/italy" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_greeting"
@@ -52,7 +52,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_orders"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_below="@id/txt_active_orders"
         android:layout_marginTop="@dimen/text_size20"
         tools:listitem="@layout/horisontal_order_item" />

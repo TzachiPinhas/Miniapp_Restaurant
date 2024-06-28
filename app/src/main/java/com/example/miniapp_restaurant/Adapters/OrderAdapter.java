@@ -32,9 +32,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     private void filterOrders() {
         filteredOrders = new ArrayList<>();
         for (Order order : allOrders) {
-            if (activeDonations && "active".equalsIgnoreCase(order.getStatus())) {
+            if (activeDonations && ("PENDING".equalsIgnoreCase(order.getOrderStatus().toString())||"ACCEPTED".equalsIgnoreCase(order.getOrderStatus().toString()))) {
                 filteredOrders.add(order);
-            } else if (!activeDonations && !"active".equalsIgnoreCase(order.getStatus())) {
+            }
+            else if (!activeDonations && !"DELIVERED".equalsIgnoreCase(order.getOrderStatus().toString())) {
                 filteredOrders.add(order);
             }
         }
@@ -54,12 +55,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public void onBindViewHolder(@NonNull OrderAdapter.OrderViewHolder holder, int position) {
         Order order = getItem(position);
         holder.associationName.setText(order.getAssociationName());
-        holder.orderItems.setText(order.getItems().toString());
-        holder.time.setText(order.getTimeStamp());
-        holder.status.setText(order.getStatus());
-        holder.orderItemsCount.setText(String.valueOf(order.getItems().size()));
-
-
+        holder.orderItems.setText(order.getFoods().toString());
+        holder.time.setText(order.getOrderDate()+" "+order.getOrderTime());
+        holder.status.setText(order.getOrderStatus().toString());
+        holder.orderItemsCount.setText(String.valueOf(order.getFoods().size()));
     }
 
     private Order getItem(int position) {
@@ -90,9 +89,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             orderItems = view.findViewById(R.id.orderedItemsText);
             time = view.findViewById(R.id.orderedTimeStamp);
             orderItemsCount = view.findViewById(R.id.orderedItemAmountText);
-
-
-
         }
 
 
