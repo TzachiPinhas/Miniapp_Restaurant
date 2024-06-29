@@ -59,6 +59,14 @@ public interface ApiService {
                                            @Query("userEmail") String userEmail);
 
 
+    @PUT("/superapp/objects/{superApp}/{id}")
+    Call<Void> updateObject(
+            @Path("superApp") String superApp,
+            @Path("id") String id,
+            @Query("userSuperApp") String userSuperApp,
+            @Query("userEmail") String userEmail,
+            @Body ObjectBoundary objectBoundary
+    );
 
 
 }

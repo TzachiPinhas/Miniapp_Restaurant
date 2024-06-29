@@ -1,71 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ui.HomeFragment">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/imageViewRestaurant"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_image"
+        android:layout_height="200dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/italy" />
+        app:srcCompat="@drawable/italy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewRestaurant"
-        android:layout_marginTop="@dimen/marginTop"
         android:text="Hello, Restaurant!"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size25"
-        android:textStyle="bold" />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/imageViewRestaurant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_greeting"
-        android:layout_marginTop="@dimen/marginTop"
         android:text="Your restaurant rating is:"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size20" />
-
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_greeting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_active_orders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_rating"
-        android:layout_marginTop="22dp"
         android:text="Some of the currently active orders:"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size20"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/txt_rating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_no_active_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="There are no active deliveries at the moment."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/txt_active_orders"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_orders"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/horisontal_order_item"
+        app:layout_constraintTop_toBottomOf="@id/txt_active_orders" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/txt_active_orders"
-        android:layout_marginTop="@dimen/text_size20"
-        tools:listitem="@layout/horisontal_order_item" />
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recycler_view_orders"
-        android:layout_alignParentBottom="true"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="20dp">
-
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_active_donations"
@@ -75,7 +99,7 @@
             android:layout_weight="1"
             android:text="Active donations"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:strokeColor="@color/blue_500"
             app:strokeWidth="5dp" />
@@ -92,17 +116,11 @@
             android:layout_weight="1"
             android:text="View all orders"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:strokeColor="@color/blue_500"
+            app:strokeWidth="5dp" />
 
-            app:strokeWidth="5dp"
+    </LinearLayout>
 
-            />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-</RelativeLayout>
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>

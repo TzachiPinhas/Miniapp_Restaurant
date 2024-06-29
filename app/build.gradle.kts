@@ -50,5 +50,12 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+    implementation (libs.material)
+    implementation (libs.recyclerview)
+    implementation (libs.material.v140)
+    implementation ("com.google.android.material:material:1.3.0")
+
+
+
 
 }

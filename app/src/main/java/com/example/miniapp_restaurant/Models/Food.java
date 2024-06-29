@@ -10,6 +10,13 @@ public class Food {
     public Food() {
     }
 
+    public Food(String name, int amount, String expiryDate, String type) {
+        this.name = name;
+        this.amount = amount;
+        this.expiryDate = expiryDate;
+        this.type = type;
+    }
+
     public String getName() {
         return name;
     }

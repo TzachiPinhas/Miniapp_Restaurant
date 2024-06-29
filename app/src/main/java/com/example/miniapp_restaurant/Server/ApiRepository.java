@@ -82,6 +82,7 @@ public class ApiRepository {
                     callback.onError("Error: " + response.code());
                 }
             }
+
             @Override
             public void onFailure(Call<ArrayList<ObjectBoundary>> call, Throwable t) {
                 Log.e("ApiRepository", "Failure message: " + t.getMessage(), t);
@@ -181,6 +182,25 @@ public class ApiRepository {
             public void onFailure(Call<ObjectBoundary> call, Throwable t) {
                 Log.e("ApiRepository", "Failure message: " + t.getMessage(), t);
                 callback.onError("Failure: " + t.getMessage());
+            }
+        });
+    }
+
+    public void updateObject(String superApp, String id, String userSuperApp, String userEmail, ObjectBoundary objectBoundary, ApiCallback<Void> callback) {
+        Call<Void> call = apiService.updateObject(superApp, id, userSuperApp, userEmail, objectBoundary);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onError("Error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                callback.onError(t.getMessage());
             }
         });
     }
