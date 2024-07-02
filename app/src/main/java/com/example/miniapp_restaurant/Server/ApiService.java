@@ -23,7 +23,7 @@ public interface ApiService {
     @GET("/superapp/objects/search/byType/{type}")
     Call<ArrayList<ObjectBoundary>> getObjectsByType(
             @Path("type") String type,
-            @Query("userSuperApp") String superapp,
+            @Query("userSuperapp") String superapp,
             @Query("userEmail") String email,
             @Query("size") int size,
             @Query("page") int page
@@ -32,7 +32,7 @@ public interface ApiService {
     @GET("superapp/objects/search/byAlias/{alias}")
     Call<ArrayList<ObjectBoundary>> getObjectsByAlias(
             @Path("alias") String alias,
-            @Query("userSuperApp") String superapp,
+            @Query("userSuperapp") String superapp,
             @Query("userEmail") String email,
             @Query("size") int size,
             @Query("page") int page
@@ -55,15 +55,15 @@ public interface ApiService {
     @GET("/superapp/objects/{superapp}/{id}")
     Call<ObjectBoundary> getSpecificObject(@Path("superapp") String superapp,
                                            @Path("id") String id,
-                                           @Query("userSuperApp") String userSuperApp,
+                                           @Query("userSuperapp") String userSuperApp,
                                            @Query("userEmail") String userEmail);
 
 
-    @PUT("/superapp/objects/{superApp}/{id}")
+    @PUT("/superapp/objects/{superapp}/{id}")
     Call<Void> updateObject(
-            @Path("superApp") String superApp,
+            @Path("superapp") String superapp,
             @Path("id") String id,
-            @Query("userSuperApp") String userSuperApp,
+            @Query("userSuperapp") String userSuperApp,
             @Query("userEmail") String userEmail,
             @Body ObjectBoundary objectBoundary
     );

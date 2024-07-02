@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText inputEmail = customView.findViewById(R.id.input_email);
         final EditText inputName = customView.findViewById(R.id.input_name);
-        final EditText inputAddress = customView.findViewById(R.id.input_address);
+        final EditText inputAddress = customView.findViewById(R.id.autocomplete_fragment);
         final EditText inputPhone = customView.findViewById(R.id.input_phone);
 
         Button btnSignUp = customView.findViewById(R.id.btn_sign_up);
@@ -287,6 +287,3 @@ public class LoginActivity extends AppCompatActivity {
         editText.setCompoundDrawables(null, null, null, null);
     }
 }
-
-
-

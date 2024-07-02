@@ -1,6 +1,5 @@
 package com.example.miniapp_restaurant.Models;
 
-
 import com.example.miniapp_restaurant.Models.Server.Object.CreatedBy;
 import com.example.miniapp_restaurant.Models.Server.Object.Location;
 import com.example.miniapp_restaurant.Models.Server.Object.ObjectBoundary;
@@ -10,7 +9,6 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 public class Order {
     private ObjectId orderID;
@@ -27,14 +25,16 @@ public class Order {
     public Order() {
     }
 
-    public Order(String donatorEmail, String donatorName, Location donatorLocation, String orderDate, String orderTime, List<Food> foods, OrderStatus orderStatus) {
+    public Order( String donatorEmail, String donatorName, String associationName, Location donatorLocation, String orderDate, String orderTime, List<Food> foods, OrderStatus orderStatus, WhoCarries whoCarries) {
         this.donatorEmail = donatorEmail;
         this.donatorName = donatorName;
+        this.associationName = associationName;
         this.donatorLocation = donatorLocation;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
         this.foods = foods;
         this.orderStatus = orderStatus;
+        this.whoCarries = whoCarries;
     }
 
     public Order(ObjectBoundary objectBoundary) {
@@ -48,6 +48,7 @@ public class Order {
         this.orderTime = temp.getOrderTime();
         this.foods = temp.getFoods();
         this.orderStatus = temp.getOrderStatus();
+        this.whoCarries = temp.getWhoCarries();
     }
 
     public static List<Order> convertObjectBoundaryList(List<ObjectBoundary> objectBoundaryList) {
@@ -148,6 +149,8 @@ public class Order {
         return this;
     }
 
+
+
     @Override
     public String toString() {
         return "Order{" +
@@ -161,17 +164,19 @@ public class Order {
                 '}';
     }
 
-    public ObjectBoundary convert(Order order) {
+    public ObjectBoundary toObjectBoundary(String email) {
         ObjectBoundary objectBoundary = new ObjectBoundary();
         objectBoundary.setObjectId(orderID);
         objectBoundary.setType("Order");
-        objectBoundary.setAlias(order.getDonatorEmail());
+        objectBoundary.setAlias(donatorEmail);
         objectBoundary.setCreatedBy(new CreatedBy("2024b.gal.said", "ziv@gmail.com"));
-        objectBoundary.setLocation(new Location(100.0, 100.0));//TODO: get location from device
+        objectBoundary.setLocation(donatorLocation);
         objectBoundary.setActive(true);
+
         Gson gson = new Gson();
-        Map<String, Object> orderMap = Map.of("order", gson.toJson(order, Order.class));
+        Map<String, Object> orderMap = Map.of("order", gson.toJson(this, Order.class));
         objectBoundary.setObjectDetails(orderMap);
+
         return objectBoundary;
     }
 }

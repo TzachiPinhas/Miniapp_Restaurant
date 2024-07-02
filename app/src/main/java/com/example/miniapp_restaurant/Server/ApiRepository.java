@@ -68,7 +68,6 @@ public class ApiRepository {
     }
 
     public void getObjectsByAlias(String alias, String superapp, String email, int size, int page, final ApiCallback<ArrayList<ObjectBoundary>> callback) {
-        Log.d("ApiRepository", "Requesting: alias=" + alias + ", superapp=" + superapp + ", email=" + email + ", size=" + size + ", page=" + page);
         Call<ArrayList<ObjectBoundary>> call = apiService.getObjectsByAlias(alias, superapp, email, size, page);
         call.enqueue(new Callback<ArrayList<ObjectBoundary>>() {
             @Override

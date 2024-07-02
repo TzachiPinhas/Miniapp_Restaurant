@@ -45,6 +45,8 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.annotation)
     implementation(libs.activity)
+    implementation(libs.places)
+    implementation(libs.play.services.fitness)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -53,7 +55,9 @@ dependencies {
     implementation (libs.material)
     implementation (libs.recyclerview)
     implementation (libs.material.v140)
-    implementation ("com.google.android.material:material:1.3.0")
+    implementation (libs.material.v130)
+
+
 
 
 

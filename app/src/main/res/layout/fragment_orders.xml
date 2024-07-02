@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.OrdersFragment">
+    tools:context=".ui.OrdersFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_title"
@@ -25,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        app:singleSelection="true"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:gravity="center"
@@ -57,8 +57,6 @@
             android:layout_weight="0"
             android:text="Completed orders"
             android:textAllCaps="false" />
-
-
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <TextView
@@ -77,15 +75,19 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="Filter orders by date"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fab_reset_filter"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_order_count"
         app:startIconDrawable="@drawable/calendar">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_date_input"
             android:layout_width="281dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
+            android:clickable="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:gravity="center"
             android:inputType="date"
             android:textSize="18sp" />
