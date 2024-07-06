@@ -20,13 +20,6 @@
         android:inputType="textPersonName"
         android:layout_marginTop="8dp" />
 
-    <EditText
-        android:id="@+id/input_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Address"
-        android:inputType="textPostalAddress"
-        android:layout_marginTop="8dp" />
 
     <EditText
         android:id="@+id/input_phone"
@@ -35,6 +28,23 @@
         android:hint="Phone"
         android:inputType="phone"
         android:layout_marginTop="8dp" />
+
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_marginTop="16dp" />
+    <EditText
+        android:id="@+id/input_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address"
+        android:enabled="false"
+        android:clickable="false"
+        android:inputType="textPostalAddress"
+        android:layout_marginTop="8dp" />
+
 
     <Button
         android:id="@+id/btn_sign_up"

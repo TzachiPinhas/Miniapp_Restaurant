@@ -189,7 +189,7 @@ public class DonationFragment extends Fragment {
             }
 
             // Create a new Food object and add it to the list
-            Food newFood = new Food(name, amount, TextUtils.join(", ", types), expiryDate);
+            Food newFood = new Food(name, amount, expiryDate, TextUtils.join(", ", types));
             foodList.add(newFood);
             foodAdapter.notifyItemInserted(foodList.size() - 1);
 

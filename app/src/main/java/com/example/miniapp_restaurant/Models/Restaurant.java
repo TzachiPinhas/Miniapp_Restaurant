@@ -12,22 +12,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Restaurant {
-    private String restaurantID;
+    private ObjectId restaurantID;
     private String restaurantEmail;
     private String restaurantName;
     private String restaurantAddress;
     private Location restaurantLocation;
     private String restaurantPhone;
     private List<Food> storage;
-    private List<Order> orders;
-    private List<Review> reviews;
 
     public Restaurant() {
     }
 
     public Restaurant(ObjectBoundary objectBoundary) {
         Gson gson = new Gson();
-        Restaurant temp = gson.fromJson((String) objectBoundary.getObjectDetails().get("restaurant"), Restaurant.class);
+        Restaurant temp = gson.fromJson((String) objectBoundary.getObjectDetails().get("Restaurant"), Restaurant.class);
         this.restaurantID = temp.getRestaurantID();
         this.restaurantEmail = temp.getRestaurantEmail();
         this.restaurantName = temp.getRestaurantName();
@@ -35,15 +33,13 @@ public class Restaurant {
         this.restaurantLocation = temp.getRestaurantLocation();
         this.restaurantPhone = temp.getRestaurantPhone();
         this.storage = temp.getStorage();
-        this.orders = temp.getOrders();
-        this.reviews = temp.getReviews();
     }
 
-    public String getRestaurantID() {
+    public ObjectId getRestaurantID() {
         return restaurantID;
     }
 
-    public Restaurant setRestaurantID(String restaurantID) {
+    public Restaurant setRestaurantID(ObjectId restaurantID) {
         this.restaurantID = restaurantID;
         return this;
     }
@@ -102,30 +98,13 @@ public class Restaurant {
         return this;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
 
-    public Restaurant setOrders(List<Order> orders) {
-        this.orders = orders;
-        return this;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public Restaurant setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-        return this;
-    }
 
     public ObjectBoundary toObjectBoundary(String email) {
         ObjectBoundary objectBoundary = new ObjectBoundary();
         objectBoundary.setType("Restaurant");
         objectBoundary.setAlias(this.restaurantName);
 
-        objectBoundary.setLocation(new Location().setLat(0.0).setLng(0.0));
         objectBoundary.setActive(true);
 
         CreatedBy createdBy = new CreatedBy();
@@ -136,7 +115,7 @@ public class Restaurant {
         objectBoundary.setCreatedBy(createdBy);
 
         Gson gson = new Gson();
-        Map<String, Object> objectDetails = Map.of("restaurant", gson.toJson(this, Restaurant.class));
+        Map<String, Object> objectDetails = Map.of("Restaurant", gson.toJson(this, Restaurant.class));
         objectBoundary.setObjectDetails(objectDetails);
 
         return objectBoundary;

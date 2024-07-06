@@ -5,39 +5,44 @@ public class CommandId {
     private String miniapp;
     private String id;
 
+
     public CommandId() {
+
     }
 
-    public CommandId(String superapp, String miniapp, String id) {
-        this.superapp = superapp;
+    public CommandId(String superAppName, String miniapp, String id) {
+        this.superapp = superAppName;
         this.miniapp = miniapp;
         this.id = id;
     }
 
-    public String getSuperapp() {
+    public String getSuperAppName() {
         return superapp;
     }
 
-    public CommandId setSuperapp(String superapp) {
-        this.superapp = superapp;
-        return this;
+    public void setSuperAppName(String superAppName) {
+        this.superapp = superAppName;
     }
 
     public String getMiniapp() {
         return miniapp;
     }
 
-    public CommandId setMiniapp(String miniapp) {
+    public void setMiniapp(String miniapp) {
         this.miniapp = miniapp;
-        return this;
     }
 
     public String getId() {
         return id;
     }
 
-    public CommandId setId(String id) {
+    public void setId(String id) {
         this.id = id;
-        return this;
     }
+
+    @Override
+    public String toString() {
+        return "CommandId [superAppName=" + superapp + ", miniapp=" + miniapp + ", id=" + id + "]";
+    }
+
 }

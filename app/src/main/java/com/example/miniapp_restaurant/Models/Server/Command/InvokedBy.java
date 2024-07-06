@@ -8,8 +8,8 @@ public class InvokedBy {
     public InvokedBy() {
     }
 
-    public InvokedBy(String superapp, String email) {
-        this.userId = new UserId(superapp, email);
+    public InvokedBy(String superAppName, String email ) {
+        this.userId = new UserId(superAppName,email);
     }
 
     public InvokedBy(UserId userId) {
@@ -21,8 +21,14 @@ public class InvokedBy {
         return userId;
     }
 
-    public InvokedBy setUserId(UserId userId) {
+    public void setUserId(UserId userId) {
         this.userId = userId;
-        return this;
     }
+
+
+    @Override
+    public String toString() {
+        return "InvokedBy [userId=" + userId + "]";
+    }
+
 }

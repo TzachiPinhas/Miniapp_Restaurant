@@ -6,6 +6,7 @@ import com.example.miniapp_restaurant.Models.Server.Object.ObjectBoundary;
 import com.example.miniapp_restaurant.Models.Server.Object.UserBoundary;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -67,6 +68,14 @@ public interface ApiService {
             @Query("userEmail") String userEmail,
             @Body ObjectBoundary objectBoundary
     );
+
+
+    @POST("superapp/miniapp/{miniAppName}")
+    Call<List<ObjectBoundary>> command(
+            @Path("miniAppName") String miniAppName,
+            @Body CommandBoundary commandBoundary
+    );
+
 
 
 }

@@ -1,33 +1,38 @@
 package com.example.miniapp_restaurant.Models.Server.Command;
 
 public class UserId {
-
     private String superapp;
     private String email;
 
-    public UserId() {
+    public UserId(String superAppName, String email) {
+        this.superapp = superAppName;
+        this.email = email;
     }
 
-    public UserId(String superapp, String email) {
-        this.superapp = superapp;
-        this.email = email;
+    public UserId() {
     }
 
     public String getSuperapp() {
         return superapp;
     }
 
-    public UserId setSuperapp(String superapp) {
-        this.superapp = superapp;
-        return this;
+    public void setSuperapp(String superAppName) {
+        this.superapp = superAppName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public UserId setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
+
+    @Override
+    public String toString() {
+        return "UserIdBoundry [superAppName=" + superapp + ", email=" + email + "]";
+    }
+
+
 }
+

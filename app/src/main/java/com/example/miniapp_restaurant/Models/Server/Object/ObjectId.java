@@ -29,4 +29,13 @@ public class ObjectId {
         this.superApp = superApp;
         return this;
     }
+
+
+    @Override
+    public String toString() {
+        return "ObjectId{" +
+                "superApp='" + superApp + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

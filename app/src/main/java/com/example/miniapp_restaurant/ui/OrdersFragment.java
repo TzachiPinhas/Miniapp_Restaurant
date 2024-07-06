@@ -40,14 +40,12 @@ public class OrdersFragment extends Fragment {
     private FragmentOrdersBinding binding;
     private String boundaryId;
     private String userEmail;
-    private Restaurant restaurant;
     private OrderAdapter orderAdapter;
     private List<Order> orderList;
     private RecyclerView recyclerView;
     private FloatingActionButton btnResetFilter;
     private TextInputEditText editTextDate;
     private MaterialButtonToggleGroup toggleButtonGroup;
-
     private ApiRepository apiRepository;
 
     @Override
@@ -143,7 +141,7 @@ public class OrdersFragment extends Fragment {
                     filteredOrders.addAll(orderList); // All orders
                 } else if (checkedId == R.id.button2) {
                     for (Order order : orderList) {
-                        if (order.getOrderStatus() == OrderStatus.ACTIVE) {
+                        if (order.getOrderStatus() == OrderStatus.ACTIVE || order.getOrderStatus() == OrderStatus.PENDING) {
                             filteredOrders.add(order);
                         }
                     }
@@ -173,53 +171,7 @@ public class OrdersFragment extends Fragment {
         toggleButtonGroup = binding.toggleButton;
     }
 
-    private void addExampleOrders(List<Order> orderList) {
-        List<Food> foods1 = new ArrayList<>();
-        foods1.add(new Food("Apples", 10, "Fruit", "2024-07-01"));
-        foods1.add(new Food("Bananas", 5, "Fruit", "2024-07-01"));
 
-        List<Food> foods2 = new ArrayList<>();
-        foods2.add(new Food("Carrots", 10, "Vegetable", "2024-07-01"));
-        foods2.add(new Food("Potatoes", 5, "Vegetable", "2024-07-01"));
-
-        List<Food> foods3 = new ArrayList<>();
-        foods3.add(new Food("Bread", 10, "Bakery", "2024-07-01"));
-        foods3.add(new Food("Milk", 5, "Dairy", "2024-07-01"));
-
-        orderList.add(new Order(
-                "donator1@example.com",
-                "Donator One",
-                "Association One",
-                new Location(37.7749, -122.4194),
-                "2024-07-01",
-                "10:00",
-                foods1,
-                OrderStatus.ACTIVE,
-                WhoCarries.COURIER
-        ));
-        orderList.add(new Order(
-                "donator2@example.com",
-                "Donator Two",
-                "Association Two",
-                new Location(34.0522, -118.2437),
-                "2024-07-02",
-                "12:00",
-                foods2,
-                OrderStatus.ACTIVE,
-                WhoCarries.COURIER
-        ));
-        orderList.add(new Order(
-                "donator3@example.com",
-                "Donator Three",
-                "Association Three",
-                new Location(40.7128, -74.0060),
-                "2024-07-03",
-                "14:00",
-                foods3,
-                OrderStatus.DELIVERED,
-                WhoCarries.TAKE_AWAY
-        ));
-    }
 
     @Override
     public void onDestroyView() {

@@ -4,6 +4,7 @@ import com.example.miniapp_restaurant.Models.Server.Object.ObjectId;
 
 public class TargetObject {
 
+
     private ObjectId objectId;
 
     public TargetObject(String superAppName, String id) {
@@ -19,18 +20,19 @@ public class TargetObject {
         this.objectId = objectId;
     }
 
+
     public ObjectId getObjectId() {
         return objectId;
     }
 
-    public TargetObject setObjectId(ObjectId objectId) {
+    public void setObjectId(ObjectId objectId) {
         this.objectId = objectId;
-        return this;
     }
 
     @Override
     public String toString() {
         return "TargetObject [objectId=" + objectId + "]";
     }
+
 
 }

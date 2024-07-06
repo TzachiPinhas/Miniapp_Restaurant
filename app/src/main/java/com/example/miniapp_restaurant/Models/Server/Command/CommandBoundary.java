@@ -1,71 +1,87 @@
 package com.example.miniapp_restaurant.Models.Server.Command;
 
+import com.example.miniapp_restaurant.Models.Server.Object.UserSession;
+
 import java.util.Date;
 import java.util.Map;
 
-public class CommandBoundary {
 
+public class CommandBoundary {
     private CommandId commandId;
     private String command;
-    private TargetObject targetObject;
+    private TargetObject targetObject; //objectId
     private Date invocationTimestamp;
-    private InvokedBy invokedBy;
+    private InvokedBy invokedBy; //userId
     private Map<String, Object> commandAttributes;
 
+
     public CommandBoundary() {
+
+    }
+
+    public CommandBoundary(String command) {
+        this.setCommandId(new CommandId("2024b.gal.said", UserSession.getInstance().getBoundaryId(), "123"));
+        this.setInvokedBy(new InvokedBy("2024b.gal.said", UserSession.getInstance().getUserEmail()));
+        this.setCommandAttributes(null);
+        this.setTargetObject(new TargetObject("2024b.gal.said", UserSession.getInstance().getBoundaryId()));
+        this.setCommand(command);
     }
 
     public CommandId getCommandId() {
         return commandId;
     }
 
-    public CommandBoundary setCommandId(CommandId commandId) {
+    public void setCommandId(CommandId commandId) {
         this.commandId = commandId;
-        return this;
+
     }
 
     public String getCommand() {
         return command;
     }
 
-    public CommandBoundary setCommand(String command) {
-        this.command = command;
-        return this;
+    public void setCommand(String doSomething) {
+        this.command = doSomething;
     }
 
     public TargetObject getTargetObject() {
         return targetObject;
     }
 
-    public CommandBoundary setTargetObject(TargetObject targetObject) {
+    public void setTargetObject(TargetObject targetObject) {
         this.targetObject = targetObject;
-        return this;
     }
 
     public Date getInvocationTimestamp() {
         return invocationTimestamp;
     }
 
-    public CommandBoundary setInvocationTimestamp(Date invocationTimestamp) {
+    public void setInvocationTimestamp(Date invocationTimestamp) {
         this.invocationTimestamp = invocationTimestamp;
-        return this;
     }
 
     public InvokedBy getInvokedBy() {
         return invokedBy;
     }
 
-    public CommandBoundary setInvokedBy(InvokedBy invokedBy) {
+    public void setInvokedBy(InvokedBy invokedBy) {
         this.invokedBy = invokedBy;
-        return this;
     }
 
     public Map<String, Object> getCommandAttributes() {
         return commandAttributes;
     }
 
-    public CommandBoundary setCommandAttributes(Map<String, Object> commandAttributes) {
+    public void setCommandAttributes(Map<String, Object> commandAttributes) {
         this.commandAttributes = commandAttributes;
-        return this;
     }
+
+    @Override
+    public String toString() {
+        return "CommandBoundary [commandId=" + commandId + ", command=" + command + ", targetObject=" + targetObject
+                + ", invocationTimestamp=" + invocationTimestamp + ", invokedBy=" + invokedBy + ", commandAttributes="
+                + commandAttributes + "]";
+    }
+
+
 }

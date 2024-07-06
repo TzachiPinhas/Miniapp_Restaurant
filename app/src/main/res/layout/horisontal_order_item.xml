@@ -26,14 +26,12 @@
             android:layout_height="match_parent"
             android:padding="11dp">
 
-
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedAccName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:text="Association Name"/>
+                android:text="Association Name"
+                android:textSize="17sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/order_status"
@@ -46,11 +44,11 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:background="@android:color/darker_gray"
+                android:layout_height="2dp"
                 android:layout_below="@+id/order_status"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/darker_gray" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedItemsText"
@@ -61,38 +59,41 @@
                 android:textSize="15sp" />
 
             <LinearLayout
+                android:id="@+id/orderedItemsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/orderedItemsLayout"
                 android:layout_below="@id/orderedItemsText"
                 android:layout_marginTop="1dp"
                 android:orientation="vertical">
 
             </LinearLayout>
 
-
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedTimeStamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5 August 2020 at 9:20 PM"
-                android:layout_below="@+id/orderedItemsText"
+                android:layout_below="@+id/orderedItemsLayout"
                 android:layout_marginTop="1dp"
-
-                android:textSize="15sp"/>
+                android:text="5 August 2020 at 9:20 PM"
+                android:textSize="15sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedItemAmountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Amount"
                 android:layout_below="@+id/orderedTimeStamp"
                 android:layout_marginTop="6dp"
+                android:text="Total Amount"
+                android:textSize="15sp" />
 
-                android:textSize="15sp"/>
-
-
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/BTN_PCK_Finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finish"
+                app:icon="@drawable/approval"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 

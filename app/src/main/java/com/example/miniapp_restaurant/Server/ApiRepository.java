@@ -1,13 +1,21 @@
 package com.example.miniapp_restaurant.Server;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.miniapp_restaurant.Models.Review;
 import com.example.miniapp_restaurant.Models.Server.Command.CommandBoundary;
+import com.example.miniapp_restaurant.Models.Server.Command.InvokedBy;
+import com.example.miniapp_restaurant.Models.Server.Command.TargetObject;
 import com.example.miniapp_restaurant.Models.Server.Object.NewUserBoundary;
 import com.example.miniapp_restaurant.Models.Server.Object.ObjectBoundary;
+import com.example.miniapp_restaurant.Models.Server.Object.RoleEnum;
 import com.example.miniapp_restaurant.Models.Server.Object.UserBoundary;
+import com.example.miniapp_restaurant.Models.Server.Object.UserSession;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -227,6 +235,78 @@ public class ApiRepository {
             }
         });
     }
+
+
+
+    public void getReviewsByCommand(ApiCallback<List<Review>> callback) {
+        CommandBoundary commandBoundary = new CommandBoundary("SBTA");
+        Map<String, Object> commandMap = Map.of("type", "Review", "alias", UserSession.getInstance().getUserEmail());
+        commandBoundary.setCommandAttributes(commandMap);
+        commandBoundary.setInvokedBy(new InvokedBy("2024b.gal.said", UserSession.getInstance().getUserEmail()));
+
+        getUser("2024b.gal.said", UserSession.getInstance().getUserEmail(), new ApiCallback<UserBoundary>() {
+            @Override
+            public void onSuccess(UserBoundary result) {
+                // Update user role to MINIAPP_USER before sending the command
+                result.setRole(RoleEnum.MINIAPP_USER);
+                updateUser(result.getUserId().getSuperapp(), result.getUserId().getEmail(), result, new ApiCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Call<List<ObjectBoundary>> call = apiService.command("2024b.gal.said", commandBoundary);
+                        call.enqueue(new Callback<List<ObjectBoundary>>() {
+                            @Override
+                            public void onResponse(Call<List<ObjectBoundary>> call, Response<List<ObjectBoundary>> response) {
+                                // Reset user role back to SUPERAPP_USER after the command execution
+                                result.setRole(RoleEnum.SUPERAPP_USER);
+                                updateUser(result.getUserId().getSuperapp(), result.getUserId().getEmail(), result, new ApiCallback<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        if (response.isSuccessful()) {
+                                            List<Review> reviews = new ArrayList<>();
+                                            for (ObjectBoundary ob : response.body()) {
+                                                if ("Review".equals(ob.getType())) {
+                                                    reviews.add(new Review(ob));
+                                                }
+                                            }
+                                            callback.onSuccess(reviews);
+                                        } else {
+                                            callback.onError("Error: " + response.code());
+                                            Log.d("ApiRepository", "onError: " + response.code());
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError(String error) {
+                                        callback.onError("Failed to reset user role: " + error);
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<ObjectBoundary>> call, Throwable t) {
+                                callback.onError("Failure: " + t.getMessage());
+                                Log.d("ApiRepository", "onFailure: " + t.getMessage());
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onError("Failed to update user role: " + error);
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String error) {
+                callback.onError("Failed to get user: " + error);
+            }
+        });
+    }
+
+
+
+
 
 }
 

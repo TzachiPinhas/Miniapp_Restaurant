@@ -21,26 +21,30 @@ public class Order {
     private List<Food> foods;
     private OrderStatus orderStatus;
     private WhoCarries whoCarries;
+    private Location associationLocation;
 
     public Order() {
     }
 
-    public Order( String donatorEmail, String donatorName, String associationName, Location donatorLocation, String orderDate, String orderTime, List<Food> foods, OrderStatus orderStatus, WhoCarries whoCarries) {
+    public Order(ObjectId id, String donatorEmail, String donatorName, Location donatorLocation, String orderDate, String orderTime, List<Food> foods, OrderStatus orderStatus, WhoCarries whoCarries, String associationName, Location associationLocation) {
+        this.orderID = id;
         this.donatorEmail = donatorEmail;
-        this.donatorName = donatorName;
         this.associationName = associationName;
+        this.donatorName = donatorName;
         this.donatorLocation = donatorLocation;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
         this.foods = foods;
         this.orderStatus = orderStatus;
         this.whoCarries = whoCarries;
+        this.associationLocation = associationLocation;
     }
 
     public Order(ObjectBoundary objectBoundary) {
         Gson gson = new Gson();
-        Order temp = gson.fromJson((String) objectBoundary.getObjectDetails().get("order"), Order.class);
+        Order temp =gson.fromJson((String) objectBoundary.getObjectDetails().get("Order"), Order.class);
         this.orderID = objectBoundary.getObjectId();
+        this.associationName = temp.getAssociationName();
         this.donatorEmail = temp.getDonatorEmail();
         this.donatorName = temp.getDonatorName();
         this.donatorLocation = temp.getDonatorLocation();
@@ -49,8 +53,9 @@ public class Order {
         this.foods = temp.getFoods();
         this.orderStatus = temp.getOrderStatus();
         this.whoCarries = temp.getWhoCarries();
-    }
+        this.associationLocation = temp.getAssociationLocation();
 
+    }
     public static List<Order> convertObjectBoundaryList(List<ObjectBoundary> objectBoundaryList) {
         List<Order> orders = new ArrayList<>();
         for (ObjectBoundary objectBoundary : objectBoundaryList) {
@@ -69,6 +74,15 @@ public class Order {
 
     public Order setDonatorName(String donatorName) {
         this.donatorName = donatorName;
+        return this;
+    }
+
+    public Location getAssociationLocation() {
+        return associationLocation;
+    }
+
+    public Order setAssociationLocation(Location associationLocation) {
+        this.associationLocation = associationLocation;
         return this;
     }
 
@@ -164,19 +178,17 @@ public class Order {
                 '}';
     }
 
-    public ObjectBoundary toObjectBoundary(String email) {
+    public ObjectBoundary convert(Order order,String email)  {
         ObjectBoundary objectBoundary = new ObjectBoundary();
         objectBoundary.setObjectId(orderID);
         objectBoundary.setType("Order");
-        objectBoundary.setAlias(donatorEmail);
-        objectBoundary.setCreatedBy(new CreatedBy("2024b.gal.said", "ziv@gmail.com"));
-        objectBoundary.setLocation(donatorLocation);
+        objectBoundary.setAlias(order.getDonatorEmail());
+        objectBoundary.setCreatedBy(new CreatedBy(order.orderID.getSuperApp(), email));
+        objectBoundary.setLocation(order.donatorLocation);//TODO: get location from device
         objectBoundary.setActive(true);
-
         Gson gson = new Gson();
-        Map<String, Object> orderMap = Map.of("order", gson.toJson(this, Order.class));
+        Map<String, Object> orderMap = Map.of("Order",gson.toJson(order, Order.class));
         objectBoundary.setObjectDetails(orderMap);
-
         return objectBoundary;
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -25,15 +27,25 @@ import com.example.miniapp_restaurant.Models.Server.Object.UserBoundary;
 import com.example.miniapp_restaurant.Models.Server.Object.UserSession;
 import com.example.miniapp_restaurant.Server.ApiCallback;
 import com.example.miniapp_restaurant.Server.ApiRepository;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
 
-
     private Button btnSignIn, btnSignUp;
     private ApiRepository apiRepository;
-
+    private PlacesClient placesClient;
+    private LatLng latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,19 +56,14 @@ public class LoginActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btn_sign_up);
         apiRepository = new ApiRepository();
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showSignInDialog();
-            }
-        });
+        btnSignIn.setOnClickListener(view -> showSignInDialog());
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showSignUpDialog();
-            }
-        });
+        btnSignUp.setOnClickListener(view -> showSignUpDialog());
+
+        // Initialize the Places API using the API key from strings.xml
+        String apiKey = BuildConfig.API_KEY;
+        Places.initialize(getApplicationContext(), apiKey);
+        placesClient = Places.createClient(this);
     }
 
     private void showSignInDialog() {
@@ -68,42 +75,29 @@ public class LoginActivity extends AppCompatActivity {
 
         builder.setView(inputEmail);
 
-        builder.setPositiveButton("Sign In", null); // Set to null, we'll override later
+        builder.setPositiveButton("Sign In", null);
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
 
         AlertDialog dialog = builder.create();
 
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                Button signInButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                signInButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String email = inputEmail.getText().toString().trim();
-                        if (TextUtils.isEmpty(email) || !isValidEmail(email)) {
-                            setErrorDrawable(inputEmail);
-                            Toast.makeText(LoginActivity.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
-                        } else {
-                            clearErrorDrawable(inputEmail);
-                            dialog.dismiss();
-                            // Handle sign in logic
-                            signIn(email);
-                        }
-                    }
-                });
-            }
+        dialog.setOnShowListener(dialogInterface -> {
+            Button signInButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            signInButton.setOnClickListener(view -> {
+                String email = inputEmail.getText().toString().trim();
+                if (TextUtils.isEmpty(email) || !isValidEmail(email)) {
+                    setErrorDrawable(inputEmail);
+                    Toast.makeText(LoginActivity.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                } else {
+                    clearErrorDrawable(inputEmail);
+                    dialog.dismiss();
+                    signIn(email);
+                }
+            });
         });
 
         dialog.show();
     }
-
 
     private void showSignUpDialog() {
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -111,8 +105,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText inputEmail = customView.findViewById(R.id.input_email);
         final EditText inputName = customView.findViewById(R.id.input_name);
-        final EditText inputAddress = customView.findViewById(R.id.autocomplete_fragment);
         final EditText inputPhone = customView.findViewById(R.id.input_phone);
+        final EditText inputAddress = customView.findViewById(R.id.input_address);
 
         Button btnSignUp = customView.findViewById(R.id.btn_sign_up);
         Button btnCancel = customView.findViewById(R.id.btn_cancel);
@@ -121,89 +115,116 @@ public class LoginActivity extends AppCompatActivity {
                 .setView(customView)
                 .create();
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(
+                new LatLng(31.937750, 34.834125),
+                new LatLng(32.225814, 34.896383)
+        ));
+        autocompleteFragment.setCountries("IL");
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS));
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onClick(View view) {
-                String email = inputEmail.getText().toString().trim();
-                String name = inputName.getText().toString().trim();
-                String address = inputAddress.getText().toString().trim();
-                String phone = inputPhone.getText().toString().trim();
+            public void onPlaceSelected(@NonNull Place place) {
+                inputAddress.setText(place.getName());
+                latLng = place.getLatLng();
+            }
 
-                boolean isValid = true;
-
-                if (TextUtils.isEmpty(email) || !isValidEmail(email)) {
-                    setErrorDrawable(inputEmail);
-                    Toast.makeText(LoginActivity.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
-                    isValid = false;
-                } else {
-                    clearErrorDrawable(inputEmail);
-                }
-                if (TextUtils.isEmpty(name)) {
-                    setErrorDrawable(inputName);
-                    Toast.makeText(LoginActivity.this, "Name cannot be empty", Toast.LENGTH_SHORT).show();
-                    isValid = false;
-                } else {
-                    clearErrorDrawable(inputName);
-                }
-
-                if (TextUtils.isEmpty(address)) {
-                    setErrorDrawable(inputAddress);
-                    Toast.makeText(LoginActivity.this, "Address cannot be empty", Toast.LENGTH_SHORT).show();
-                    isValid = false;
-                } else {
-                    clearErrorDrawable(inputAddress);
-                }
-
-                if (TextUtils.isEmpty(phone)) {
-                    setErrorDrawable(inputPhone);
-                    Toast.makeText(LoginActivity.this, "Phone cannot be empty", Toast.LENGTH_SHORT).show();
-                    isValid = false;
-                } else {
-                    clearErrorDrawable(inputPhone);
-                }
-
-                if (isValid) {
-                    // Handle sign up logic
-                    signUp(email, name, address, phone);
-                    dialog.dismiss();
-                }
+            @Override
+            public void onError(@NonNull Status status) {
+                Log.e("Places test", "An error occurred: " + status);
             }
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnSignUp.setOnClickListener(view -> {
+            String email = inputEmail.getText().toString().trim();
+            String name = inputName.getText().toString().trim();
+            String phone = inputPhone.getText().toString().trim();
+            String address = inputAddress.getText().toString().trim();
+
+            boolean isValid = true;
+
+            if (TextUtils.isEmpty(email) || !isValidEmail(email)) {
+                setErrorDrawable(inputEmail);
+                Toast.makeText(LoginActivity.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                isValid = false;
+            } else {
+                clearErrorDrawable(inputEmail);
+            }
+            if (TextUtils.isEmpty(name)) {
+                setErrorDrawable(inputName);
+                Toast.makeText(LoginActivity.this, "Name cannot be empty", Toast.LENGTH_SHORT).show();
+                isValid = false;
+            } else {
+                clearErrorDrawable(inputName);
+            }
+            if (TextUtils.isEmpty(phone)) {
+                setErrorDrawable(inputPhone);
+                Toast.makeText(LoginActivity.this, "Phone cannot be empty", Toast.LENGTH_SHORT).show();
+                isValid = false;
+            } else {
+                clearErrorDrawable(inputPhone);
+            }
+            if (TextUtils.isEmpty(address) || latLng == null) {
+                setErrorDrawable(inputAddress);
+                Toast.makeText(LoginActivity.this, "Please select a valid address from the autocomplete", Toast.LENGTH_SHORT).show();
+                isValid = false;
+            } else {
+                clearErrorDrawable(inputAddress);
+            }
+
+            if (isValid) {
+                signUp(email, name, address, phone, latLng);
                 dialog.dismiss();
             }
         });
 
+        btnCancel.setOnClickListener(view -> dialog.dismiss());
+
         dialog.show();
     }
+
 
     private boolean isValidEmail(CharSequence email) {
         return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+
     private void signIn(String email) {
         apiRepository.getUser("2024b.gal.said", email, new ApiCallback<UserBoundary>() {
             @Override
             public void onSuccess(UserBoundary userBoundary) {
-                // Handle success
-                Toast.makeText(LoginActivity.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
-                UserSession.getInstance().setBoundaryId(userBoundary.getUserName());
-                UserSession.getInstance().setUserEmail(email);
-                navigateToMainActivity();
+                String objectId = userBoundary.getUserName();
+
+                apiRepository.getSpecificObject("2024b.gal.said", objectId, "2024b.gal.said", email, new ApiCallback<ObjectBoundary>() {
+                    @Override
+                    public void onSuccess(ObjectBoundary objectBoundary) {
+                        if ("Restaurant".equals(objectBoundary.getType())) {
+                            Toast.makeText(LoginActivity.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                            UserSession.getInstance().setBoundaryId(userBoundary.getUserName());
+                            UserSession.getInstance().setUserEmail(email);
+                            navigateToMainActivity();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "User is not a restaurant owner", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(LoginActivity.this, "Failed to verify user role: " + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onError(String error) {
-                // Handle error
                 Toast.makeText(LoginActivity.this, "Failed to login: " + error, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void signUp(String email, String name, String address, String phone) {
+
+    private void signUp(String email, String name, String address, String phone, LatLng latLng) {
         NewUserBoundary newUserBoundary = new NewUserBoundary();
         newUserBoundary.setUsername(name);
         newUserBoundary.setEmail(email);
@@ -219,17 +240,15 @@ public class LoginActivity extends AppCompatActivity {
                 restaurant.setRestaurantName(name);
                 restaurant.setRestaurantAddress(address);
                 restaurant.setRestaurantPhone(phone);
-                restaurant.setRestaurantLocation(new Location().setLat(0.0).setLng(0.0));
+                restaurant.setRestaurantLocation(new Location(latLng.latitude, latLng.longitude));
                 restaurant.setStorage(new ArrayList<>());
-                restaurant.setOrders(new ArrayList<>());
-                restaurant.setReviews(new ArrayList<>());
+
 
                 ObjectBoundary objectBoundary = restaurant.toObjectBoundary(email);
 
                 apiRepository.createObject(objectBoundary, new ApiCallback<ObjectBoundary>() {
                     @Override
                     public void onSuccess(ObjectBoundary result) {
-
                         Toast.makeText(LoginActivity.this, "Restaurant created successfully", Toast.LENGTH_SHORT).show();
                         UserBoundary updatedUser = userResult;
                         updatedUser.setUserName(result.getObjectId().getId());
@@ -243,16 +262,13 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(String error) {
-                                // Handle error
                                 Toast.makeText(LoginActivity.this, "Failed to update user: " + error, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
 
-
                     @Override
                     public void onError(String error) {
-                        // Handle error
                         Toast.makeText(LoginActivity.this, "Failed to create restaurant: " + error, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -265,16 +281,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isUserExist(String email) {
-        // Implement logic to check if user exists
-        // For demonstration, assume user exists if email contains "example"
-        return email.contains("example");
-    }
-
     private void navigateToMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
-        finish(); // Optional: Call finish() if you don't want to allow the user to go back to the login screen
+        finish();
     }
 
     private void setErrorDrawable(EditText editText) {
