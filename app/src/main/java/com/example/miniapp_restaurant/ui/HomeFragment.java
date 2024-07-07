@@ -37,7 +37,6 @@ public class HomeFragment extends Fragment {
     private Restaurant restaurant;
     private ImageFilterView imageViewRestaurant;
     private MaterialTextView txt_greeting;
-    private MaterialTextView txt_rating;
     private MaterialTextView txt_active_orders;
     private MaterialTextView txt_no_active_orders;
     private RecyclerView recycler_view_orders;
@@ -142,7 +141,6 @@ public class HomeFragment extends Fragment {
     private void findViews() {
         imageViewRestaurant = binding.imageViewRestaurant;
         txt_greeting = binding.txtGreeting;
-        txt_rating = binding.txtRating;
         txt_active_orders = binding.txtActiveOrders;
         txt_no_active_orders = binding.txtNoActiveOrders;
         recycler_view_orders = binding.recyclerViewOrders;

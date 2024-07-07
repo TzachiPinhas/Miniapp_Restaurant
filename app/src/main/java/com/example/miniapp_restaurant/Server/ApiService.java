@@ -73,7 +73,7 @@ public interface ApiService {
     @POST("superapp/miniapp/{miniAppName}")
     Call<List<ObjectBoundary>> command(
             @Path("miniAppName") String miniAppName,
-            @Body CommandBoundary commandBoundary
+            @Body CommandBoundary boundary
     );
 
 

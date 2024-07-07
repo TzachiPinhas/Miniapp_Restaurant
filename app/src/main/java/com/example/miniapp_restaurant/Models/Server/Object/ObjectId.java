@@ -1,14 +1,14 @@
 package com.example.miniapp_restaurant.Models.Server.Object;
 
 public class ObjectId {
-    private String superApp;
+    private String superapp;
     private String id;
 
     public ObjectId() {
     }
 
-    public ObjectId(String superApp, String id) {
-        this.superApp = superApp;
+    public ObjectId(String superapp, String id) {
+        this.superapp = superapp;
         this.id = id;
     }
 
@@ -21,12 +21,12 @@ public class ObjectId {
         return this;
     }
 
-    public String getSuperApp() {
-        return superApp;
+    public String getSuperapp() {
+        return superapp;
     }
 
-    public ObjectId setSuperApp(String superApp) {
-        this.superApp = superApp;
+    public ObjectId setSuperapp(String superapp) {
+        this.superapp = superapp;
         return this;
     }
 
@@ -34,7 +34,7 @@ public class ObjectId {
     @Override
     public String toString() {
         return "ObjectId{" +
-                "superApp='" + superApp + '\'' +
+                "superApp='" + superapp + '\'' +
                 ", id='" + id + '\'' +
                 '}';
     }

@@ -242,8 +242,7 @@ public class ApiRepository {
         CommandBoundary commandBoundary = new CommandBoundary("SBTA");
         Map<String, Object> commandMap = Map.of("type", "Review", "alias", UserSession.getInstance().getUserEmail());
         commandBoundary.setCommandAttributes(commandMap);
-        commandBoundary.setInvokedBy(new InvokedBy("2024b.gal.said", UserSession.getInstance().getUserEmail()));
-
+        Log.d("ApiRepository", "getReviewsByCommand: " + commandBoundary.toString());
         getUser("2024b.gal.said", UserSession.getInstance().getUserEmail(), new ApiCallback<UserBoundary>() {
             @Override
             public void onSuccess(UserBoundary result) {

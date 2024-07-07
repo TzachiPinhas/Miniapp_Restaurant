@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText inputEmail = new EditText(this);
         inputEmail.setHint("Email");
+        inputEmail.setMaxLines(1);
 
         builder.setView(inputEmail);
 

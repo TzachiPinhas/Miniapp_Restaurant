@@ -16,6 +16,8 @@ public class Order {
     private String donatorName;
     private String associationName;
     private Location donatorLocation;
+    private String associationAddress;
+    private String donatorAddress;
     private String orderDate;
     private String orderTime;
     private List<Food> foods;
@@ -26,7 +28,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(ObjectId id, String donatorEmail, String donatorName, Location donatorLocation, String orderDate, String orderTime, List<Food> foods, OrderStatus orderStatus, WhoCarries whoCarries, String associationName, Location associationLocation) {
+    public Order(ObjectId id, String donatorEmail, String donatorName, Location donatorLocation, String orderDate, String orderTime, List<Food> foods, OrderStatus orderStatus, WhoCarries whoCarries, String associationName, Location associationLocation, String associationAddress, String donatorAddress) {
         this.orderID = id;
         this.donatorEmail = donatorEmail;
         this.associationName = associationName;
@@ -37,6 +39,8 @@ public class Order {
         this.foods = foods;
         this.orderStatus = orderStatus;
         this.whoCarries = whoCarries;
+        this.donatorAddress = donatorAddress;
+        this.associationAddress=associationAddress;
         this.associationLocation = associationLocation;
     }
 
@@ -54,6 +58,8 @@ public class Order {
         this.orderStatus = temp.getOrderStatus();
         this.whoCarries = temp.getWhoCarries();
         this.associationLocation = temp.getAssociationLocation();
+        this.associationAddress = temp.getAssociationAddress();
+        this.donatorAddress = temp.getDonatorAddress();
 
     }
     public static List<Order> convertObjectBoundaryList(List<ObjectBoundary> objectBoundaryList) {
@@ -62,6 +68,24 @@ public class Order {
             orders.add(new Order(objectBoundary));
         }
         return orders;
+    }
+
+    public String getAssociationAddress() {
+        return associationAddress;
+    }
+
+    public Order setAssociationAddress(String associationAddress) {
+        this.associationAddress = associationAddress;
+        return this;
+    }
+
+    public String getDonatorAddress() {
+        return donatorAddress;
+    }
+
+    public Order setDonatorAddress(String donatorAddress) {
+        this.donatorAddress = donatorAddress;
+        return this;
     }
 
     public String getDonatorEmail() {
@@ -183,7 +207,7 @@ public class Order {
         objectBoundary.setObjectId(orderID);
         objectBoundary.setType("Order");
         objectBoundary.setAlias(order.getDonatorEmail());
-        objectBoundary.setCreatedBy(new CreatedBy(order.orderID.getSuperApp(), email));
+        objectBoundary.setCreatedBy(new CreatedBy(order.orderID.getSuperapp(), email));
         objectBoundary.setLocation(order.donatorLocation);//TODO: get location from device
         objectBoundary.setActive(true);
         Gson gson = new Gson();

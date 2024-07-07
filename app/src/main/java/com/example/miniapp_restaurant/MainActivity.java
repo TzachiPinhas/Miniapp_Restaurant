@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     private void changeNavHeader(View header, Restaurant restaurant) {
         TextView textTitleLabel = header.findViewById(R.id.name_LBL);
         TextView emailTitleLabel = header.findViewById(R.id.email_LBL);
-        ImageView imageTitleLabel = header.findViewById(R.id.main_image);
 
         textTitleLabel.setText(restaurant.getRestaurantName());
         emailTitleLabel.setText(restaurant.getRestaurantEmail());

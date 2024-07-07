@@ -50,11 +50,23 @@
                 android:layout_marginBottom="8dp"
                 android:background="@android:color/darker_gray" />
 
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/orderedTimeStamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+
+                android:layout_marginTop="1dp"
+                android:text="5 August 2020 at 9:20 PM"
+                android:textSize="15sp" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedItemsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/divider"
+                android:layout_below="@+id/orderedTimeStamp"
                 android:text="Ordered Items"
                 android:textSize="15sp" />
 
@@ -68,22 +80,24 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/orderedTimeStamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/orderedItemsLayout"
-                android:layout_marginTop="1dp"
-                android:text="5 August 2020 at 9:20 PM"
-                android:textSize="15sp" />
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedItemAmountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/orderedTimeStamp"
+                android:layout_below="@+id/orderedItemsText"
                 android:layout_marginTop="6dp"
                 android:text="Total Amount"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/orderedWhoCarriesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/orderedItemAmountText"
+                android:layout_marginTop="6dp"
+                android:text="Who Carries?"
                 android:textSize="15sp" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

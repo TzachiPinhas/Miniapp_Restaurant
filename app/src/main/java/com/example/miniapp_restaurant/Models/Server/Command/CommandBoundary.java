@@ -20,7 +20,7 @@ public class CommandBoundary {
     }
 
     public CommandBoundary(String command) {
-        this.setCommandId(new CommandId("2024b.gal.said", UserSession.getInstance().getBoundaryId(), "123"));
+        this.setCommandId(new CommandId("2024b.gal.said","2024b.gal.said" ,UserSession.getInstance().getBoundaryId()));
         this.setInvokedBy(new InvokedBy("2024b.gal.said", UserSession.getInstance().getUserEmail()));
         this.setCommandAttributes(null);
         this.setTargetObject(new TargetObject("2024b.gal.said", UserSession.getInstance().getBoundaryId()));

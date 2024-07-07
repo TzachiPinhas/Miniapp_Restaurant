@@ -56,6 +56,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.orderedItemAmountText.setText("Total: " + order.getFoods().size());
         holder.order_status.setTextColor(order.getOrderStatus() == OrderStatus.ACTIVE || order.getOrderStatus() == OrderStatus.PENDING ? context.getResources().getColor(R.color.green) : context.getResources().getColor(R.color.black));
         holder.order_status.setText(order.getOrderStatus().toString());
+        holder.orderedItemWhoCarries.setText(order.getWhoCarries().toString().equals("DELIVERY") ? "Delivery method: Delivery" : "Delivery method: Take Away");
 
         if (order.getOrderStatus() == OrderStatus.ACTIVE && order.getWhoCarries() == WhoCarries.TAKE_AWAY) {
             holder.btnFinish.setVisibility(View.VISIBLE);
@@ -86,6 +87,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             @Override
             public void onSuccess(ObjectBoundary result) {
                 Order order = new Order(result);
+                order.setOrderStatus(OrderStatus.DELIVERED);
                 updateOrderStatusOnServer(order, result.getCreatedBy().getUserId().getEmail());
             }
 
@@ -103,6 +105,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         private MaterialTextView orderedItemsText;
         private MaterialTextView orderedTimeStamp;
         private MaterialTextView orderedItemAmountText;
+        private MaterialTextView orderedItemWhoCarries;
         private ExtendedFloatingActionButton btnFinish;
 
 
@@ -114,6 +117,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             orderedItemsText = itemView.findViewById(R.id.orderedItemsText);
             orderedTimeStamp = itemView.findViewById(R.id.orderedTimeStamp);
             orderedItemAmountText = itemView.findViewById(R.id.orderedItemAmountText);
+            orderedItemWhoCarries = itemView.findViewById(R.id.orderedWhoCarriesText);
             btnFinish = itemView.findViewById(R.id.BTN_PCK_Finish);
 
         }
