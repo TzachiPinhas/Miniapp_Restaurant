@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(view -> showSignUpDialog());
 
         // Initialize the Places API using the API key from strings.xml
-        String apiKey = BuildConfig.API_KEY;
+        String apiKey =BuildConfig.MAPS_API_KEY;
         Places.initialize(getApplicationContext(), apiKey);
         placesClient = Places.createClient(this);
     }
