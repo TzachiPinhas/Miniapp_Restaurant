@@ -72,23 +72,22 @@ The Restaurant Donation App is built with a range of modern technologies ensurin
 ## Screenshots
 
 ### Sign in
-![התחברות](https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/396f1470-2b14-477c-a11d-560490318538)
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/396f1470-2b14-477c-a11d-560490318538" alt="התחברות" width="400" height="700">
 
 ### Sign up
-![הרשמהה](https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/0f57e920-0b53-4a75-8056-d38aaa305e3b)
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/0f57e920-0b53-4a75-8056-d38aaa305e3b" alt="הרשמהה" width="400" height="700">
 
 ### Home Page
-![home](https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/e2f2437b-93dd-4fd2-adda-9ec7a2251bd2)
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/e2f2437b-93dd-4fd2-adda-9ec7a2251bd2" alt="home" width="400" height="700">
 
 ### Add Donation
-![הוספת מזון](https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/87408ddd-25c8-48eb-a357-ec3cf8e9cd76)
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/87408ddd-25c8-48eb-a357-ec3cf8e9cd76" alt="הוספת מזון" width="400" height="700">
 
 ### Order management
-![כל ההזמנות](https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/8e4d4249-4535-4ff3-ad0d-4843fb905751)
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/8e4d4249-4535-4ff3-ad0d-4843fb905751" alt="כל ההזמנות" width="400" height="700">
 
 ### Reviews and Ratings
-![ביקורת](https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/d1f977e7-44f1-492d-b0ac-7d04b297b566)
-
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/d1f977e7-44f1-492d-b0ac-7d04b297b566" alt="ביקורת" width="400" height="700">
 
 
 
