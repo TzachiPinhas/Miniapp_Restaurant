@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="All Orders"
+        android:text="@string/all_orders"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All orders"
+            android:text="@string/all_orders_button"
             android:textAllCaps="false" />
 
         <com.google.android.material.button.MaterialButton
@@ -45,7 +45,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Active orders"
+            android:text="@string/active_orders_button"
             android:textAllCaps="false" />
 
         <com.google.android.material.button.MaterialButton
@@ -53,7 +53,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Completed"
+            android:text="@string/completed_orders_button"
             android:textAllCaps="false" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Total Orders: 0"
+        android:text="@string/total_orders"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Filter orders by date"
+        android:hint="@string/filter_by_date"
         app:layout_constraintEnd_toStartOf="@+id/fab_reset_filter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_order_count"

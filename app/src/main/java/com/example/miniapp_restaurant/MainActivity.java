@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getResturantFromServer() {
-        apiRepository.getSpecificObject("2024b.gal.said", boundaryId, "2024b.gal.said", userEmail, new ApiCallback<ObjectBoundary>() {
+        apiRepository.getSpecificObject(UserSession.getInstance().getSUPERAPP(), boundaryId, UserSession.getInstance().getSUPERAPP(), userEmail, new ApiCallback<ObjectBoundary>() {
             @Override
             public void onSuccess(ObjectBoundary result) {
                 restaurant = new Restaurant(result);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         // Navigate to the login screen
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.logged_out_successfully), Toast.LENGTH_SHORT).show();
         finish();
     }
 

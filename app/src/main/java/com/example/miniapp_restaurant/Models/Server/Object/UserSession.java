@@ -4,6 +4,8 @@ public class UserSession {
     private static UserSession instance;
     private String boundaryId;
     private String userEmail;
+    private final String SUPERAPP= "2024b.gal.said";
+
 
     private UserSession() {
     }
@@ -13,6 +15,10 @@ public class UserSession {
             instance = new UserSession();
         }
         return instance;
+    }
+
+    public String getSUPERAPP() {
+        return SUPERAPP;
     }
 
     public void setBoundaryId(String boundaryId) {

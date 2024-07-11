@@ -68,7 +68,7 @@ public class DonationFragment extends Fragment {
     }
 
     private void getRestaurantFromServer() {
-        apiRepository.getSpecificObject("2024b.gal.said", boundaryId, "2024b.gal.said", userEmail, new ApiCallback<ObjectBoundary>() {
+        apiRepository.getSpecificObject(UserSession.getInstance().getSUPERAPP(), boundaryId, UserSession.getInstance().getSUPERAPP(), userEmail, new ApiCallback<ObjectBoundary>() {
             @Override
             public void onSuccess(ObjectBoundary result) {
                 restaurant = new Restaurant(result);
@@ -141,12 +141,12 @@ public class DonationFragment extends Fragment {
             String expiryDate = inputExpiryDate.getText().toString().trim();
 
             if (TextUtils.isEmpty(name)) {
-                inputName.setError("Name is required");
+                inputName.setError(getString(R.string.name_required));
                 return;
             }
 
             if (TextUtils.isEmpty(amountStr)) {
-                inputAmount.setError("Amount is required");
+                inputAmount.setError(getString(R.string.amount_required));
                 return;
             }
 
@@ -154,16 +154,16 @@ public class DonationFragment extends Fragment {
             try {
                 amount = Integer.parseInt(amountStr);
                 if (amount <= 0) {
-                    inputAmount.setError("Amount must be greater than zero");
+                    inputAmount.setError(getString(R.string.amount_invalid));
                     return;
                 }
             } catch (NumberFormatException e) {
-                inputAmount.setError("Invalid amount");
+                inputAmount.setError(getString(R.string.amount_not_number));
                 return;
             }
 
             if (TextUtils.isEmpty(expiryDate)) {
-                inputExpiryDate.setError("Expiry date is required");
+                inputExpiryDate.setError(getString(R.string.expiry_date_required));
                 return;
             }
 
@@ -176,14 +176,14 @@ public class DonationFragment extends Fragment {
             }
 
             if (types.isEmpty()) {
-                Toast.makeText(getContext(), "At least one type must be selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.type_required), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Check for duplicate food
             for (Food food : foodList) {
                 if (food.getName().equalsIgnoreCase(name)) {
-                    inputName.setError("Food item already exists");
+                    inputName.setError(getString(R.string.food_exists));
                     return;
                 }
             }
@@ -221,7 +221,7 @@ public class DonationFragment extends Fragment {
             String amountStr = inputAmount.getText().toString().trim();
 
             if (TextUtils.isEmpty(amountStr)) {
-                inputAmount.setError("Amount is required");
+                inputAmount.setError(getString(R.string.amount_required));
                 return;
             }
 
@@ -229,11 +229,11 @@ public class DonationFragment extends Fragment {
             try {
                 amount = Integer.parseInt(amountStr);
                 if (amount <= 0) {
-                    inputAmount.setError("Amount must be greater than zero");
+                    inputAmount.setError(getString(R.string.amount_invalid));
                     return;
                 }
             } catch (NumberFormatException e) {
-                inputAmount.setError("Invalid amount");
+                inputAmount.setError(getString(R.string.amount_not_number));
                 return;
             }
 
@@ -254,14 +254,13 @@ public class DonationFragment extends Fragment {
 
     private void updateRestaurantInDB() {
         ObjectBoundary objectBoundary = restaurant.toObjectBoundary(userEmail);
-        apiRepository.updateObject("2024b.gal.said", boundaryId, "2024b.gal.said", userEmail, objectBoundary, new ApiCallback<Void>() {
+        apiRepository.updateObject(UserSession.getInstance().getSUPERAPP(), boundaryId,UserSession.getInstance().getSUPERAPP(), userEmail, objectBoundary, new ApiCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
             }
 
             @Override
             public void onError(String error) {
-                Toast.makeText(getContext(), "Error updating restaurant: " + error, Toast.LENGTH_SHORT).show();
             }
         });
     }

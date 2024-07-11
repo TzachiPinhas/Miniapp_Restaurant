@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getRestaurantFromServer() {
-        apiRepository.getSpecificObject("2024b.gal.said", boundaryId, "2024b.gal.said", userEmail, new ApiCallback<ObjectBoundary>() {
+        apiRepository.getSpecificObject(UserSession.getInstance().getSUPERAPP(), boundaryId, UserSession.getInstance().getSUPERAPP(), userEmail, new ApiCallback<ObjectBoundary>() {
             @Override
             public void onSuccess(ObjectBoundary result) {
                 restaurant = new Restaurant(result);
@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchOrdersFromServer() {
-        apiRepository.getObjectsByAlias(userEmail, "2024b.gal.said", userEmail, 100, 0, new ApiCallback<ArrayList<ObjectBoundary>>() {
+        apiRepository.getObjectsByAlias(userEmail, UserSession.getInstance().getSUPERAPP(), userEmail, 100, 0, new ApiCallback<ArrayList<ObjectBoundary>>() {
             @Override
             public void onSuccess(ArrayList<ObjectBoundary> result) {
                 activeOrders.clear();
@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void changeView() {
-        txt_greeting.setText(String.format("Hello, %s!", restaurant.getRestaurantName()));
+        txt_greeting.setText(String.format(getString(R.string.greeting_message), restaurant.getRestaurantName()));
         // You can set other restaurant details here if needed
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MiniApp_Restaurant</string>
+    <string name="app_name">FeedForward Restaurant</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -23,4 +23,81 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="add_item">Add Item</string>
+    <string name="name">Name</string>
+    <string name="amount">Amount</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="type">Type</string>
+    <string name="kosher">Kosher</string>
+    <string name="dairy">Dairy</string>
+    <string name="meat">Meat</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="gluten_free">Gluten Free</string>
+    <string name="save">Save</string>
+    <string name="edit_amount">Edit Amount</string>
+    <string name="food_list">Food List</string>
+    <string name="hello_restaurant">Hello, </string>
+    <string name="active_orders">Some of the currently active orders:</string>
+    <string name="no_active_orders">There are no active deliveries at the moment.</string>
+    <string name="donation_management">Donation management</string>
+    <string name="view_all_orders">View all orders</string>
+    <string name="all_orders">All Orders</string>
+    <string name="all_orders_button">All orders</string>
+    <string name="active_orders_button">Active orders</string>
+    <string name="completed_orders_button">Completed</string>
+    <string name="total_orders">Total Orders: %d</string>
+    <string name="filter_by_date">Filter orders by date</string>
+    <string name="all_review">All Review</string>
+    <string name="email">Email</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="association_name">Association Name: </string>
+    <string name="status">Status</string>
+    <string name="ordered_items">Ordered items</string>
+    <string name="total_amount">Total amount:</string>
+    <string name="who_carries">Delivery method?</string>
+    <string name="finish">Finish</string>
+    <string name="name_required">Name is required</string>
+    <string name="amount_required">Amount is required</string>
+    <string name="amount_invalid">Amount must be greater than zero</string>
+    <string name="amount_not_number">Invalid amount</string>
+    <string name="expiry_date_required">Expiry date is required</string>
+    <string name="type_required">At least one type must be selected</string>
+    <string name="food_exists">Food item already exists</string>
+    <string name="greeting_message">Hello, %s!</string>
+    <string name="overall_rating_no_reviews">Overall Rating: No reviews yet</string>
+    <string name="overall_rating">Overall Rating: %.1f</string>
+    <string name="name_empty">Name cannot be empty</string>
+    <string name="phone_empty">Phone cannot be empty</string>
+    <string name="address_invalid">Please select a valid address from the autocomplete</string>
+    <string name="user_created">User created successfully</string>
+    <string name="update_user_failed">Failed to update user: %s</string>
+    <string name="create_restaurant_failed">Failed to create restaurant: %s</string>
+    <string name="create_user_failed">Failed to create user: %s</string>
+    <string name="email_hint">Email</string>
+    <string name="valid_email">Please enter a valid email</string>
+    <string name="cancel">Cancel</string>
+    <string name="user_logged_in">User logged in successfully</string>
+    <string name="not_restaurant_owner">User is not a restaurant owner</string>
+    <string name="verify_user_failed">Failed to verify user role: %s</string>
+    <string name="email_not_exist">The email does not exist in the system</string>
+    <string name="logged_out_successfully">Logged out successfully</string>
+    <string name="total_items">Total:</string>
+    <string name="delivery_method_delivery">Delivery method: Delivery</string>
+    <string name="delivery_method_take_away">Delivery method: Take Away</string>
+    <string name="order_status_pending">Pending</string>
+    <string name="order_status_active">Active</string>
+    <string name="order_status_delivered">Finish</string>
+
+
+
+
+
+
 </resources>

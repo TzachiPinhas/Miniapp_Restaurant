@@ -218,7 +218,7 @@ public class ApiRepository {
         Map<String, Object> commandMap = Map.of("type", "Review", "alias", UserSession.getInstance().getUserEmail());
         commandBoundary.setCommandAttributes(commandMap);
         Log.d("ApiRepository", "getReviewsByCommand: " + commandBoundary.toString());
-        getUser("2024b.gal.said", UserSession.getInstance().getUserEmail(), new ApiCallback<UserBoundary>() {
+        getUser(UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getUserEmail(), new ApiCallback<UserBoundary>() {
             @Override
             public void onSuccess(UserBoundary result) {
                 // Update user role to MINIAPP_USER before sending the command
@@ -226,7 +226,7 @@ public class ApiRepository {
                 updateUser(result.getUserId().getSuperapp(), result.getUserId().getEmail(), result, new ApiCallback<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Call<List<ObjectBoundary>> call = apiService.command("2024b.gal.said", commandBoundary);
+                        Call<List<ObjectBoundary>> call = apiService.command(UserSession.getInstance().getSUPERAPP(), commandBoundary);
                         call.enqueue(new Callback<List<ObjectBoundary>>() {
                             @Override
                             public void onResponse(Call<List<ObjectBoundary>> call, Response<List<ObjectBoundary>> response) {

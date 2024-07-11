@@ -69,7 +69,7 @@ public class OrdersFragment extends Fragment {
 
 
     private void fetchOrdersByAlias(String alias) {
-        apiRepository.getObjectsByAlias(alias, "2024b.gal.said", userEmail, 50, 0, new ApiCallback<ArrayList<ObjectBoundary>>() {
+        apiRepository.getObjectsByAlias(alias, UserSession.getInstance().getSUPERAPP(), userEmail, 50, 0, new ApiCallback<ArrayList<ObjectBoundary>>() {
             @Override
             public void onSuccess(ArrayList<ObjectBoundary> result) {
                 orderList = new ArrayList<>();
@@ -158,7 +158,7 @@ public class OrdersFragment extends Fragment {
 
     private void updateOrderCount() {
         int count = orderAdapter.getItemCount();
-        binding.textOrderCount.setText("Total Orders: " + count);
+        binding.textOrderCount.setText(String.format(getString(R.string.total_orders), count));
     }
 
     private void findViews(View root) {

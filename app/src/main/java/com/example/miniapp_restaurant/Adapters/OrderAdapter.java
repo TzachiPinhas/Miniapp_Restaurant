@@ -42,7 +42,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         Order order = orderList.get(position);
-        holder.orderedAccName.setText("Association Name: " + order.getAssociationName());
+        holder.orderedAccName.setText(String.format("%s %s", context.getString(R.string.association_name), order.getAssociationName()));
 
         // Display each food item on a new line
         StringBuilder foodDetails = new StringBuilder();
@@ -53,10 +53,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.orderedItemsText.setText(foodDetails.toString().trim());
 
         holder.orderedTimeStamp.setText(order.getOrderDate() + " " + order.getOrderTime());
-        holder.orderedItemAmountText.setText("Total: " + order.getFoods().size());
+        holder.orderedItemAmountText.setText(String.format("%s %d", context.getString(R.string.total_items), order.getFoods().size()));
         holder.order_status.setTextColor(order.getOrderStatus() == OrderStatus.ACTIVE || order.getOrderStatus() == OrderStatus.PENDING ? context.getResources().getColor(R.color.green) : context.getResources().getColor(R.color.black));
-        holder.order_status.setText(order.getOrderStatus().toString());
-        holder.orderedItemWhoCarries.setText(order.getWhoCarries().toString().equals("DELIVERY") ? "Delivery method: Delivery" : "Delivery method: Take Away");
+        holder.order_status.setText(context.getString(getOrderStatusStringResId(order.getOrderStatus())));
+        holder.orderedItemWhoCarries.setText(order.getWhoCarries() == WhoCarries.COURIER ? context.getString(R.string.delivery_method_delivery) : context.getString(R.string.delivery_method_take_away));
 
         if (order.getOrderStatus() == OrderStatus.ACTIVE && order.getWhoCarries() == WhoCarries.TAKE_AWAY) {
             holder.btnFinish.setVisibility(View.VISIBLE);
@@ -68,8 +68,23 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         } else {
             holder.btnFinish.setVisibility(View.GONE);
         }
+        
 
     }
+
+    private int getOrderStatusStringResId(OrderStatus orderStatus) {
+        switch (orderStatus) {
+            case PENDING:
+                return R.string.order_status_pending;
+            case ACTIVE:
+                return R.string.order_status_active;
+            case DELIVERED:
+                return R.string.order_status_delivered;
+            default:
+                throw new IllegalArgumentException("Unknown order status: " + orderStatus);
+    }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -83,7 +98,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     private void getAndUpdateSpecificOrderFromServer(String orderId) {
         ApiRepository apiRepository = new ApiRepository();
-        apiRepository.getSpecificObject("2024b.gal.said", orderId, "2024b.gal.said", UserSession.getInstance().getUserEmail(), new ApiCallback<ObjectBoundary>() {
+        apiRepository.getSpecificObject(UserSession.getInstance().getSUPERAPP(), orderId,UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getUserEmail(), new ApiCallback<ObjectBoundary>() {
             @Override
             public void onSuccess(ObjectBoundary result) {
                 Order order = new Order(result);
@@ -125,7 +140,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     private void updateOrderStatusOnServer(Order order, String email) {
         ApiRepository apiRepository = new ApiRepository();
-        apiRepository.updateObject("2024b.gal.said", order.getOrderID().getId(), "2024b.gal.said", UserSession.getInstance().getUserEmail(), order.convert(order, email), new ApiCallback<Void>() {
+        apiRepository.updateObject(UserSession.getInstance().getSUPERAPP(), order.getOrderID().getId(),UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getUserEmail(), order.convert(order, email), new ApiCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
                 // Handle success if needed

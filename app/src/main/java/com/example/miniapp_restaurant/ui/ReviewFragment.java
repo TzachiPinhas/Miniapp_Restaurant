@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miniapp_restaurant.Adapters.ReviewAdapter;
 import com.example.miniapp_restaurant.Models.Review;
+import com.example.miniapp_restaurant.R;
 import com.example.miniapp_restaurant.Server.ApiCallback;
 import com.example.miniapp_restaurant.Server.ApiRepository;
 import com.example.miniapp_restaurant.databinding.FragmentReviewBinding;
@@ -75,14 +76,14 @@ public class ReviewFragment extends Fragment {
 
     private void updateOverallRating() {
         if (reviews.isEmpty()) {
-            overallRatingTextView.setText("Overall Rating: No reviews yet");
+            overallRatingTextView.setText(getString(R.string.overall_rating_no_reviews));
         } else {
             double totalRating = 0;
             for (Review review : reviews) {
                 totalRating += review.getRating(); // Assuming `Review` has a `getRating()` method
             }
             double averageRating = totalRating / reviews.size();
-            overallRatingTextView.setText(String.format("Overall Rating: %.1f", averageRating));
+            overallRatingTextView.setText(String.format(getString(R.string.overall_rating), averageRating));
         }
     }
 

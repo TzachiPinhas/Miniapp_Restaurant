@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
-        android:text="Add Item"
+        android:text="@string/add_item"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name">
+        android:hint="@string/name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_name"
@@ -29,7 +29,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Amount">
+        android:hint="@string/amount">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_amount"
@@ -41,7 +41,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Expiry Date">
+        android:hint="@string/expiry_date">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_expiry_date"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:text="Type" />
+        android:text="@string/type" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chip_group"
@@ -68,42 +68,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Kosher" />
+            android:text="@string/kosher" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_dairy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Dairy" />
+            android:text="@string/dairy" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_meat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Meat" />
+            android:text="@string/meat" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_vegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Vegetarian" />
+            android:text="@string/vegetarian" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_vegan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Vegan" />
+            android:text="@string/vegan" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_gluten_free"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Gluten free" />
+            android:text="@string/gluten_free" />
     </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.button.MaterialButton
@@ -111,5 +111,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Save" />
+        android:text="@string/save" />
 </LinearLayout>

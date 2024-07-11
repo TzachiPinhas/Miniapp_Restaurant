@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,86 +23,98 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="11dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedAccName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Association Name"
-                android:textSize="17sp" />
+                android:text="@string/association_name"
+                android:textSize="17sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/orderedAccName"
-                android:text="Status"
-                android:textColor="#32CB00" />
+                android:text="@string/status"
+                android:textColor="#32CB00"
+                app:layout_constraintTop_toBottomOf="@id/orderedAccName"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <View
                 android:id="@+id/divider"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_below="@+id/order_status"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/order_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@android:color/darker_gray" />
+                android:layout_marginBottom="8dp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedTimeStamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/divider"
-                android:layout_marginTop="1dp"
                 android:text="5 August 2020 at 9:20 PM"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="1dp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedItemsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/orderedTimeStamp"
-                android:text="Ordered Items"
-                android:textSize="15sp" />
+                android:text="@string/ordered_items"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/orderedTimeStamp"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
                 android:id="@+id/orderedItemsLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/orderedItemsText"
-                android:layout_marginTop="1dp"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/orderedItemsText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="1dp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedItemAmountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/orderedItemsLayout"
-                android:layout_marginTop="6dp"
-                android:text="Total Amount"
-                android:textSize="15sp" />
+                android:text="@string/total_amount"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/orderedItemsLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="6dp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/orderedWhoCarriesText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/orderedItemAmountText"
-                android:layout_marginTop="6dp"
-                android:text="Who Carries?"
-                android:textSize="15sp" />
+                android:text="@string/who_carries"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/orderedItemAmountText"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="6dp" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/BTN_PCK_Finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text="Finish"
-                app:icon="@drawable/approval" />
-        </RelativeLayout>
+                android:text="@string/finish"
+                app:icon="@drawable/approval"
+                app:layout_constraintTop_toBottomOf="@id/orderedWhoCarriesText"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

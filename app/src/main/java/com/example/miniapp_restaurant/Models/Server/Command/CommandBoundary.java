@@ -20,10 +20,10 @@ public class CommandBoundary {
     }
 
     public CommandBoundary(String command) {
-        this.setCommandId(new CommandId("2024b.gal.said", "2024b.gal.said", UserSession.getInstance().getBoundaryId()));
-        this.setInvokedBy(new InvokedBy("2024b.gal.said", UserSession.getInstance().getUserEmail()));
+        this.setCommandId(new CommandId(UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getBoundaryId()));
+        this.setInvokedBy(new InvokedBy(UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getUserEmail()));
         this.setCommandAttributes(null);
-        this.setTargetObject(new TargetObject("2024b.gal.said", UserSession.getInstance().getBoundaryId()));
+        this.setTargetObject(new TargetObject(UserSession.getInstance().getSUPERAPP(), UserSession.getInstance().getBoundaryId()));
         this.setCommand(command);
     }
 

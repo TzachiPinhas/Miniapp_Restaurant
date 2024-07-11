@@ -5,6 +5,7 @@ import com.example.miniapp_restaurant.Models.Server.Object.Location;
 import com.example.miniapp_restaurant.Models.Server.Object.ObjectBoundary;
 import com.example.miniapp_restaurant.Models.Server.Object.ObjectId;
 import com.example.miniapp_restaurant.Models.Server.Object.UserId;
+import com.example.miniapp_restaurant.Models.Server.Object.UserSession;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -108,7 +109,7 @@ public class Restaurant {
 
         CreatedBy createdBy = new CreatedBy();
         UserId userId = new UserId();
-        userId.setSuperapp("2024b.gal.said");
+        userId.setSuperapp(UserSession.getInstance().getSUPERAPP());
         userId.setEmail(email);
         createdBy.setUserId(userId);
         objectBoundary.setCreatedBy(createdBy);

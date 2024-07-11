@@ -72,28 +72,28 @@ public class SignUpFragment extends Fragment {
 
             if (TextUtils.isEmpty(email) || !isValidEmail(email)) {
                 setErrorDrawable(inputEmail);
-                Toast.makeText(getContext(), "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.valid_email), Toast.LENGTH_SHORT).show();
                 isValid = false;
             } else {
                 clearErrorDrawable(inputEmail);
             }
             if (TextUtils.isEmpty(name)) {
                 setErrorDrawable(inputName);
-                Toast.makeText(getContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.name_empty), Toast.LENGTH_SHORT).show();
                 isValid = false;
             } else {
                 clearErrorDrawable(inputName);
             }
             if (TextUtils.isEmpty(phone)) {
                 setErrorDrawable(inputPhone);
-                Toast.makeText(getContext(), "Phone cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.phone_empty), Toast.LENGTH_SHORT).show();
                 isValid = false;
             } else {
                 clearErrorDrawable(inputPhone);
             }
             if (TextUtils.isEmpty(address) || latLng == null) {
                 setErrorDrawable(inputAddress);
-                Toast.makeText(getContext(), "Please select a valid address from the autocomplete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.address_invalid), Toast.LENGTH_SHORT).show();
                 isValid = false;
             } else {
                 clearErrorDrawable(inputAddress);
@@ -175,10 +175,10 @@ public class SignUpFragment extends Fragment {
                 apiRepository.createObject(objectBoundary, new ApiCallback<ObjectBoundary>() {
                     @Override
                     public void onSuccess(ObjectBoundary result) {
-                        Toast.makeText(getContext(), "User created successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.user_created), Toast.LENGTH_SHORT).show();
                         UserBoundary updatedUser = userResult;
                         updatedUser.setUserName(result.getObjectId().getId());
-                        apiRepository.updateUser("2024b.gal.said", email, updatedUser, new ApiCallback<Void>() {
+                        apiRepository.updateUser(UserSession.getInstance().getSUPERAPP(), email, updatedUser, new ApiCallback<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 UserSession.getInstance().setBoundaryId(updatedUser.getUserName());
@@ -188,21 +188,21 @@ public class SignUpFragment extends Fragment {
 
                             @Override
                             public void onError(String error) {
-                                Toast.makeText(getContext(), "Failed to update user: " + error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), String.format(getString(R.string.update_user_failed), error), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(getContext(), "Failed to create restaurant: " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), String.format(getString(R.string.create_restaurant_failed), error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
 
             @Override
             public void onError(String error) {
-                Toast.makeText(getContext(), "Failed to create user: " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), String.format(getString(R.string.create_user_failed), error), Toast.LENGTH_SHORT).show();
             }
         });
     }
