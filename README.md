@@ -10,7 +10,11 @@ This application helps manage and distribute leftover food to minimize waste and
 - Google Places Autocomplete for Address Input
 
 ## Requirements
-- Android Studio
+- Android Studio - Installation guide:
+ ```sh
+https://developer.android.com/codelabs/basic-android-kotlin-compose-install-android-studio#0
+```
+
 - Android SDK
 - A physical or virtual Android device (emulator)
 - Google API Key for Places
