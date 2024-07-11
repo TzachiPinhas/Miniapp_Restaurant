@@ -9,11 +9,11 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
         android:text="Add Item"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +35,7 @@
             android:id="@+id/input_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -47,15 +47,15 @@
             android:id="@+id/input_expiry_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"/>
+            android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:text="Type" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chip_group"
@@ -67,49 +67,49 @@
             android:id="@+id/chip_fruit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kosher"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:text="Kosher" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_dairy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dairy"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:text="Dairy" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_meat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meat"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:text="Meat" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_vegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vegetarian"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:text="Vegetarian" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_vegan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vegan"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:text="Vegan" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_gluten_free"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gluten free"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:text="Gluten free" />
     </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="Save" />
 </LinearLayout>

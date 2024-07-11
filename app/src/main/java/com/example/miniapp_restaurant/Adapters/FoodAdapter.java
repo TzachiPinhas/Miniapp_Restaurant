@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.miniapp_restaurant.Models.Food;
 import com.example.miniapp_restaurant.R;
 import com.google.android.material.textview.MaterialTextView;
@@ -89,6 +91,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     public interface OnFoodItemChangeListener {
         void onEdit(int position, Food food);
+
         void onDelete();
     }
 }

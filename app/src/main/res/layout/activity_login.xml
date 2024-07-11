@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BBDEFB"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#BBDEFB"
     tools:context=".LoginActivity">
-
 
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/openimage"/>
+        android:src="@drawable/openimage" />
 
     <Button
         android:id="@+id/btn_sign_in"
@@ -28,4 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Sign Up" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
 </LinearLayout>

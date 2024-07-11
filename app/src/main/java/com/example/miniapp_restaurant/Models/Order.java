@@ -40,13 +40,13 @@ public class Order {
         this.orderStatus = orderStatus;
         this.whoCarries = whoCarries;
         this.donatorAddress = donatorAddress;
-        this.associationAddress=associationAddress;
+        this.associationAddress = associationAddress;
         this.associationLocation = associationLocation;
     }
 
     public Order(ObjectBoundary objectBoundary) {
         Gson gson = new Gson();
-        Order temp =gson.fromJson((String) objectBoundary.getObjectDetails().get("Order"), Order.class);
+        Order temp = gson.fromJson((String) objectBoundary.getObjectDetails().get("Order"), Order.class);
         this.orderID = objectBoundary.getObjectId();
         this.associationName = temp.getAssociationName();
         this.donatorEmail = temp.getDonatorEmail();
@@ -62,6 +62,7 @@ public class Order {
         this.donatorAddress = temp.getDonatorAddress();
 
     }
+
     public static List<Order> convertObjectBoundaryList(List<ObjectBoundary> objectBoundaryList) {
         List<Order> orders = new ArrayList<>();
         for (ObjectBoundary objectBoundary : objectBoundaryList) {
@@ -188,7 +189,6 @@ public class Order {
     }
 
 
-
     @Override
     public String toString() {
         return "Order{" +
@@ -202,7 +202,7 @@ public class Order {
                 '}';
     }
 
-    public ObjectBoundary convert(Order order,String email)  {
+    public ObjectBoundary convert(Order order, String email) {
         ObjectBoundary objectBoundary = new ObjectBoundary();
         objectBoundary.setObjectId(orderID);
         objectBoundary.setType("Order");
@@ -211,7 +211,7 @@ public class Order {
         objectBoundary.setLocation(order.donatorLocation);//TODO: get location from device
         objectBoundary.setActive(true);
         Gson gson = new Gson();
-        Map<String, Object> orderMap = Map.of("Order",gson.toJson(order, Order.class));
+        Map<String, Object> orderMap = Map.of("Order", gson.toJson(order, Order.class));
         objectBoundary.setObjectDetails(orderMap);
         return objectBoundary;
     }

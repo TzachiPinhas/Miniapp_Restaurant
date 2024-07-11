@@ -99,7 +99,6 @@ public class Restaurant {
     }
 
 
-
     public ObjectBoundary toObjectBoundary(String email) {
         ObjectBoundary objectBoundary = new ObjectBoundary();
         objectBoundary.setType("Restaurant");
@@ -113,6 +112,7 @@ public class Restaurant {
         userId.setEmail(email);
         createdBy.setUserId(userId);
         objectBoundary.setCreatedBy(createdBy);
+        objectBoundary.setLocation(this.restaurantLocation);
 
         Gson gson = new Gson();
         Map<String, Object> objectDetails = Map.of("Restaurant", gson.toJson(this, Restaurant.class));

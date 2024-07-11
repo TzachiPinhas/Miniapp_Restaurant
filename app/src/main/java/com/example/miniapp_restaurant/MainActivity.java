@@ -27,7 +27,6 @@ import com.example.miniapp_restaurant.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private ApiRepository apiRepository;
@@ -50,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_orders, R.id.nav_review, R.id.nav_logout,R.id.nav_donation)
+                R.id.nav_home, R.id.nav_orders, R.id.nav_review, R.id.nav_logout, R.id.nav_donation)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        apiRepository= new ApiRepository();
+        apiRepository = new ApiRepository();
         header = navigationView.getHeaderView(0);
         boundaryId = UserSession.getInstance().getBoundaryId();
         userEmail = UserSession.getInstance().getUserEmail();
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getResturantFromServer() {
-        apiRepository.getSpecificObject("2024b.gal.said",boundaryId,"2024b.gal.said" , userEmail, new ApiCallback<ObjectBoundary>() {
+        apiRepository.getSpecificObject("2024b.gal.said", boundaryId, "2024b.gal.said", userEmail, new ApiCallback<ObjectBoundary>() {
             @Override
             public void onSuccess(ObjectBoundary result) {
                 restaurant = new Restaurant(result);

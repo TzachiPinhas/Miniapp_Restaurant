@@ -68,7 +68,6 @@ public class OrdersFragment extends Fragment {
     }
 
 
-
     private void fetchOrdersByAlias(String alias) {
         apiRepository.getObjectsByAlias(alias, "2024b.gal.said", userEmail, 50, 0, new ApiCallback<ArrayList<ObjectBoundary>>() {
             @Override
@@ -168,7 +167,6 @@ public class OrdersFragment extends Fragment {
         editTextDate = binding.editTextDateInput;
         toggleButtonGroup = binding.toggleButton;
     }
-
 
 
     @Override

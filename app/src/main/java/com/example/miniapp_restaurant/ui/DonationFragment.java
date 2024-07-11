@@ -257,7 +257,6 @@ public class DonationFragment extends Fragment {
         apiRepository.updateObject("2024b.gal.said", boundaryId, "2024b.gal.said", userEmail, objectBoundary, new ApiCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                Toast.makeText(getContext(), "Restaurant updated successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override

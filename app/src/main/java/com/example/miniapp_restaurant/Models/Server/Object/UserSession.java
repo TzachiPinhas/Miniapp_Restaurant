@@ -5,7 +5,8 @@ public class UserSession {
     private String boundaryId;
     private String userEmail;
 
-    private UserSession() {}
+    private UserSession() {
+    }
 
     public static synchronized UserSession getInstance() {
         if (instance == null) {

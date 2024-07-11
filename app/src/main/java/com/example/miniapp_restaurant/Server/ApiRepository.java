@@ -213,31 +213,6 @@ public class ApiRepository {
     }
 
 
-    public void executeCommand(String miniAppName, CommandBoundary commandBoundary, final ApiCallback<ObjectBoundary[]> callback) {
-        Call<ObjectBoundary[]> call = apiService.executeCommand(miniAppName, commandBoundary);
-        call.enqueue(new Callback<ObjectBoundary[]>() {
-            @Override
-            public void onResponse(Call<ObjectBoundary[]> call, Response<ObjectBoundary[]> response) {
-                if (response.isSuccessful()) {
-                    callback.onSuccess(response.body());
-                } else {
-                    Log.e("ApiRepository", "Error response code: " + response.code());
-                    Log.e("ApiRepository", "Error response message: " + response.message());
-                    Log.e("ApiRepository", "Error response body: " + response.errorBody());
-                    callback.onError("Error: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ObjectBoundary[]> call, Throwable t) {
-                Log.e("ApiRepository", "Failure message: " + t.getMessage(), t);
-                callback.onError("Failure: " + t.getMessage());
-            }
-        });
-    }
-
-
-
     public void getReviewsByCommand(ApiCallback<List<Review>> callback) {
         CommandBoundary commandBoundary = new CommandBoundary("SBTA");
         Map<String, Object> commandMap = Map.of("type", "Review", "alias", UserSession.getInstance().getUserEmail());
@@ -302,9 +277,6 @@ public class ApiRepository {
             }
         });
     }
-
-
-
 
 
 }
