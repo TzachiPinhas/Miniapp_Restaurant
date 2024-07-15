@@ -137,7 +137,7 @@ public class SignUpFragment extends Fragment {
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
-                inputAddress.setText(place.getName());
+                inputAddress.setText(place.getAddress());
                 latLng = place.getLatLng();
             }
 
