@@ -41,7 +41,7 @@
     <string name="edit_amount">ערוך כמות</string>
     <string name="food_list">רשימת מזון לתרומה</string>
     <string name="hello_restaurant">שלום, </string>
-    <string name="active_orders">כמה מההזמנות הפעילות כרגע:</string>
+    <string name="active_orders">הזמנות פעילות כרגע:</string>
     <string name="no_active_orders">אין הזמנות פעילות כרגע.</string>
     <string name="donation_management">ניהול תרומות</string>
     <string name="view_all_orders">צפה בכל ההזמנות</string>

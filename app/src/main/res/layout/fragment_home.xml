@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/italy" />
+        app:srcCompat="@drawable/food" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_greeting"
