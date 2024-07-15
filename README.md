@@ -8,6 +8,8 @@ This application helps manage and distribute leftover food to minimize waste and
 - Add, Edit, and Delete Donation Items
 - View and Manage Donations
 - Google Places Autocomplete for Address Input
+- Supports English and Hebrew languages
+
 
 ## Requirements
 - Android Studio - Installation guide:
@@ -52,6 +54,10 @@ Once the project is opened in Android Studio, click on File > Sync Project with 
 MAPS_API_KEY=YOUR_API_KEY
 ```
 
+### Step 3: Configure the Server Connection
+To use the application and connect to the server, access the **'RetrofitClient'** class and change **'BASE_URL'** to the desired value.
+The app is currently configured to run using an emulator.
+
 ## Application Flow
 
 1. **Registration/Login**: Restaurants begin by registering for an account using an email.
@@ -76,22 +82,22 @@ The Restaurant Donation App is built with a range of modern technologies ensurin
 ## Screenshots
 
 ### Sign in
-<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/396f1470-2b14-477c-a11d-560490318538" alt="התחברות" width="400" height="700">
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/396f1470-2b14-477c-a11d-560490318538" alt="התחברות" width="350" height="700">
 
 ### Sign up
-<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/0f57e920-0b53-4a75-8056-d38aaa305e3b" alt="הרשמהה" width="400" height="700">
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/0f57e920-0b53-4a75-8056-d38aaa305e3b" alt="הרשמהה" width="350" height="700">
 
 ### Home Page
-<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/e2f2437b-93dd-4fd2-adda-9ec7a2251bd2" alt="home" width="400" height="700">
+<img src="https://github.com/user-attachments/assets/0a41413c-7598-4585-89c1-b4ce87859f50" alt="home" width="350" height="700">
 
 ### Add Donation
-<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/87408ddd-25c8-48eb-a357-ec3cf8e9cd76" alt="הוספת מזון" width="400" height="700">
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/87408ddd-25c8-48eb-a357-ec3cf8e9cd76" alt="הוספת מזון" width="350" height="700">
 
 ### Order management
-<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/8e4d4249-4535-4ff3-ad0d-4843fb905751" alt="כל ההזמנות" width="400" height="700">
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/8e4d4249-4535-4ff3-ad0d-4843fb905751" alt="כל ההזמנות" width="350" height="700">
 
 ### Reviews and Ratings
-<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/d1f977e7-44f1-492d-b0ac-7d04b297b566" alt="ביקורת" width="400" height="700">
+<img src="https://github.com/TzachiPinhas/Miniapp_Restaurant/assets/141555220/d1f977e7-44f1-492d-b0ac-7d04b297b566" alt="ביקורת" width="350" height="700">
 
 
 
